@@ -1,0 +1,81 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Gentelella Alela! | </title>
+
+    <!-- Bootstrap -->
+    <link href="~/admin-side/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/admin-side/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/admin-side/lib/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="~/admin-side/lib/animate.css/animate.min.css" rel="stylesheet">
+
+    <link href="~/admin-side/lib/notifyjs/dist/styles/metro/notify-metro.css" rel="stylesheet" />
+    <!-- Custom Theme Style -->
+    <link href="~/admin-side/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="login">
+    <div>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+
+        <div class="login_wrapper">
+            <div class="animate form login_form">
+                <section class="login_content">
+                    <form>
+                        @Html.AntiForgeryToken()
+                        <h1>Login System Admin</h1>
+                        <div>
+                            <input id="txtUserName" type="text" class="form-control" placeholder="Username" required=""/>
+                        </div>
+                        <div>
+                            <input id="txtPassword" type="password" class="form-control" placeholder="Password" required=""/>
+                        </div>
+                        <div>
+                            <a class="btn btn-default submit" id="btnLogin">Log in</a>
+                            <a class="reset_pass" href="#">Lost your password?</a>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="separator">
+                            <div class="clearfix"></div>
+                            <br/>
+                            <div>
+                                <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                                <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src="~/admin-side/lib/jquery/dist/jquery.js"></script>
+    <script src="~/admin-side/lib/notifyjs/dist/notify.js"></script>
+    <script src="~/admin-side/lib/notifyjs/dist/styles/metro/notify-metro.js"></script>
+
+    <script src="~/admin-side/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/admin-side/lib/jquery-validation/dist/additional-methods.js"></script>
+    <script src="~/admin-side/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+    <script src="~/app/shared/util.js"></script>
+    <script src="~/app/controller/login/index.js"></script>
+    <script>
+        var login = new LoginController();
+        login.initialize();
+    </script>
+</body>
+</html>
