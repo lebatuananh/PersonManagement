@@ -2,28 +2,30 @@
 
 namespace PesonManagement.Data
 {
-    using System.IO;
-    using System.Linq;
-
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Design;
     using Microsoft.Extensions.Configuration;
-
     using PesonManagement.Data.Entity;
     using PesonManagement.Data.Entity.Interface;
+    using System.IO;
+    using System.Linq;
 
     public class AppDbContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
         public AppDbContext(DbContextOptions contextOptions) : base(contextOptions)
         {
         }
+
         public DbSet<Function> Functions { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
+        public DbSet<AnnouncementUser> AnnouncementUsers { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             #region IdentityConfig
@@ -38,6 +40,7 @@ namespace PesonManagement.Data
 
             //builder.AddConfiguration(new FunctionConfigurations());
         }
+
         public override int SaveChanges()
         {
             var modified = ChangeTracker.Entries()
@@ -56,6 +59,7 @@ namespace PesonManagement.Data
             }
             return base.SaveChanges();
         }
+
         public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
         {
             public AppDbContext CreateDbContext(string[] args)

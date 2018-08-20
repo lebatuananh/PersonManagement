@@ -13,7 +13,8 @@
             url: '/admin/login/authen',
             success: function (res) {
                 if (res.Success) {
-                    window.location.href = "/Admin/Home/Index";
+                    var urlRedirect = window.location.search.substr(1);
+                    window.location.href = urlRedirect || '/Admin/Home/Index';
                 } else {
                     util.notify('Login failed', 'error');
                 }

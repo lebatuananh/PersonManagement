@@ -84,7 +84,8 @@ namespace PersonManagement.WebAPI
 
             //services
             services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IFunctionService, FunctionServer>();
+            services.AddTransient<IFunctionService, FunctionService>();
+            services.AddTransient<IRoleService, RoleService>();
 
 
             //Config Swagger Test
@@ -133,7 +134,6 @@ namespace PersonManagement.WebAPI
                 {
                     s.SwaggerEndpoint("/swagger/v1/swagger.json", "Project API v1.1");
                 });
-
         }
     }
 }

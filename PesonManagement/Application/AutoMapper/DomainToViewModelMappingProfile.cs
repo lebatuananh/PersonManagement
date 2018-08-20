@@ -17,6 +17,8 @@
                 .ForMember(dest => dest.DateCreated, m => m.MapFrom(src => src.CreatedDate))
                 .ForMember(dest => dest.ModifiedDate, m => m.MapFrom(src => src.ModifiedDate))
                 .MaxDepth(2);
+            CreateMap<AnnouncementUser, AnnouncementUserViewModel>().MaxDepth(2);
+            CreateMap<Announcement, AnnouncementViewModel>().MaxDepth(2);
         }
     }
 }

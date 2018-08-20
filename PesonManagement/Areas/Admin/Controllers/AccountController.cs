@@ -6,18 +6,20 @@ namespace PesonManagement.Areas.Admin.Controllers
 {
     using System.Threading.Tasks;
 
-    using Microsoft.AspNetCore.Authorization;
-
-    [Area("Admin")]
-    [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private readonly SignInManager<AppUser> _signInManager;
+
+        public AccountController(SignInManager<AppUser> signInManager)
+        {
+            this._signInManager = signInManager;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await this._signInManager.SignOutAsync();
-            return this.Redirect("Admin/Home/Index");
+            return this.Redirect("/Admin/Login/Index");
         }
     }
 }

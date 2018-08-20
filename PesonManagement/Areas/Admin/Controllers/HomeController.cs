@@ -2,11 +2,7 @@
 
 namespace PesonManagement.Areas.Admin.Controllers
 {
-    using Microsoft.AspNetCore.Authorization;
-
-    [Area("Admin")]
-    [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public IActionResult Index()
         {

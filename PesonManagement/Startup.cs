@@ -10,6 +10,7 @@ namespace PesonManagement
 {
     using AutoMapper;
 
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
@@ -18,10 +19,12 @@ namespace PesonManagement
 
     using PesonManagement.Application.Implementation;
     using PesonManagement.Application.Interface;
+    using PesonManagement.Authorization;
     using PesonManagement.Data;
     using PesonManagement.Data.Entity;
     using PesonManagement.Data.Implementation;
     using PesonManagement.Data.Interface;
+    using PesonManagement.Helpers;
 
     public class Startup
     {
@@ -77,6 +80,8 @@ namespace PesonManagement
             services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
 
+            services.AddScoped<IUserClaimsPrincipalFactory<AppUser>, CustomClaimsPrincipalFactory>();
+
             services.AddSingleton(Mapper.Configuration);
             services.AddScoped<IMapper>(
                 sp => new Mapper(sp.GetRequiredService<AutoMapper.IConfigurationProvider>(), sp.GetService
@@ -87,7 +92,20 @@ namespace PesonManagement
 
             //services
             services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IFunctionService, FunctionServer>();
+            services.AddTransient<IFunctionService, FunctionService>();
+            services.AddTransient<IRoleService, RoleService>();
+
+
+            services.AddTransient<IAuthorizationHandler, BaseResourceAuthorizationHandler>();
+
+            services.ConfigureApplicationCookie(options =>
+                {
+                    options.AccessDeniedPath = "/Account/AccessDenied";
+                    options.Cookie.Name = "YourAppCookieName";
+                    options.Cookie.HttpOnly = true;
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                    options.LoginPath = "/admin/login";
+                });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(
                 options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());

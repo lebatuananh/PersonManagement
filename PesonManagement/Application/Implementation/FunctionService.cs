@@ -15,7 +15,7 @@ namespace PesonManagement.Application.Implementation
     using PesonManagement.Data.Entity;
     using PesonManagement.Data.Interface;
 
-    public class FunctionServer:IFunctionService
+    public class FunctionService:IFunctionService
     {
         private readonly IRepository<Function, Guid> _functionRepository;
 
@@ -23,7 +23,7 @@ namespace PesonManagement.Application.Implementation
 
         private readonly IMapper _mapper;
 
-        public FunctionServer(IRepository<Function, Guid> functionRepository, IUnitOfWork unitOfWork, IMapper mapper)
+        public FunctionService(IRepository<Function, Guid> functionRepository, IUnitOfWork unitOfWork, IMapper mapper)
         {
             this._functionRepository = functionRepository;
             this._unitOfWork = unitOfWork;

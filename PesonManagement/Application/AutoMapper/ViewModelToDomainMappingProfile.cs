@@ -14,6 +14,8 @@
             CreateMap<PermissionViewModel, Permission>().ConstructUsing(c => new Permission());
             CreateMap<AppUserViewModel, AppUser>().ConstructUsing(c => new AppUser());
             CreateMap<AppRoleViewModel, AppRole>().ConstructUsing(x => new AppRole());
+            CreateMap<AnnouncementViewModel, Announcement>().ConstructUsing(x => new Announcement());
+            CreateMap<AnnouncementUserViewModel, AnnouncementUser>().ConstructUsing(x => new AnnouncementUser());
         }
     }
 }
