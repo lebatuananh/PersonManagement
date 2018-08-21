@@ -1,7 +1,7 @@
 ﻿var LoginController = function () {
     this.initialize = function () {
         registerEvents();
-    }
+    };
     var login = function (user, pass) {
         $.ajax({
             type: 'POST',
@@ -13,14 +13,17 @@
             url: '/admin/login/authen',
             success: function (res) {
                 if (res.Success) {
-                    var urlRedirect = window.location.search.substr(1);
-                    window.location.href = urlRedirect || '/Admin/Home/Index';
+                    util.notify('Login success', 'success');
+                    var urlRedirect = util.getParamUrl('ReturnUrl');
+                    // debugger;
+                    window.location.href = util.getParamUrl('ReturnUrl') || '/Admin/Home/Index';
+
                 } else {
                     util.notify('Login failed', 'error');
                 }
             }
         });
-    }
+    };
     var registerEvents = function () {
         $('#btnLogin').off('click').on('click', function () {
             var user = $('#txtUserName').val();
@@ -28,4 +31,4 @@
             login(user, password);
         });
     }
-}
+};

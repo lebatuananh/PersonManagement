@@ -1,42 +1,52 @@
 ﻿var util = {
+    getParamUrl: function getParamUrl(name, url) {
+        if (!url) url = location.href;
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regexS = "[\\?&]" + name + "=([^&#]*)";
+        var regex = new RegExp(regexS);
+        var results = regex.exec(url);
+        return results == null ? null : decodeURIComponent(results[1]);
+    },
+
     configs: {
         pageSize: 10,
         pageIndex: 1
     },
-    notify: function (message, type) {
-        $.notify(message, {
-            // whether to hide the notification on click
-            clickToHide: true,
-            // whether to auto-hide the notification
-            autoHide: true,
-            // if autoHide, hide after milliseconds
-            autoHideDelay: 5000,
-            // show the arrow pointing at the element
-            arrowShow: true,
-            // arrow size in pixels
-            arrowSize: 5,
-            // position defines the notification position though uses the defaults below
-            position: 'top right',
-            // default positions
-            elementPosition: 'top right',
-            globalPosition: 'top right',
-            // default style
-            style: 'bootstrap',
-            // default class (string or [string])
-            className: type,
-            // show animation
-            showAnimation: 'slideDown',
-            // show animation duration
-            showDuration: 400,
-            // hide animation
-            hideAnimation: 'slideUp',
-            // hide animation duration
-            hideDuration: 200,
-            // padding between element and notification
-            gap: 2
-        });
+    notify: function(message, type) {
+        $.notify(message,
+            {
+                // whether to hide the notification on click
+                clickToHide: true,
+                // whether to auto-hide the notification
+                autoHide: true,
+                // if autoHide, hide after milliseconds
+                autoHideDelay: 5000,
+                // show the arrow pointing at the element
+                arrowShow: true,
+                // arrow size in pixels
+                arrowSize: 5,
+                // position defines the notification position though uses the defaults below
+                position: 'top right',
+                // default positions
+                elementPosition: 'top right',
+                globalPosition: 'top right',
+                // default style
+                style: 'bootstrap',
+                // default class (string or [string])
+                className: type,
+                // show animation
+                showAnimation: 'slideDown',
+                // show animation duration
+                showDuration: 400,
+                // hide animation
+                hideAnimation: 'slideUp',
+                // hide animation duration
+                hideDuration: 200,
+                // padding between element and notification
+                gap: 2
+            });
     },
-    confirm: function (message, okCallback) {
+    confirm: function(message, okCallback) {
         bootbox.confirm({
             size: "small",
             message: message,
@@ -50,7 +60,7 @@
                     className: 'btn-danger'
                 }
             },
-            callback: function (result) {
+            callback: function(result) {
                 if (result === true) {
                     okCallback();
                 }
@@ -58,7 +68,7 @@
             }
         });
     },
-    unflattern: function (arr) {
+    unflattern: function(arr) {
         var map = {};
         var roots = [];
         for (var i = 0; i < arr.length; i += 1) {
@@ -73,7 +83,7 @@
         }
         return roots;
     },
-    unflattern1: function (arr) {
+    unflattern1: function(arr) {
         var map = {};
         var roots = [];
         for (var i = 0; i < arr.length; i += 1) {
@@ -88,7 +98,7 @@
         }
         return roots;
     },
-    dateFormatJson: function (datetime) {
+    dateFormatJson: function(datetime) {
         if (datetime == null || datetime === '')
             return '';
         var newdate = new Date(datetime);
@@ -107,7 +117,7 @@
             mm = "0" + mm;
         return day + "/" + month + "/" + year;
     },
-    dateTimeFormatJson: function (datetime) {
+    dateTimeFormatJson: function(datetime) {
         if (datetime === null || datetime === '')
             return '';
         var newdate = new Date(datetime);
@@ -129,23 +139,23 @@
             ss = "0" + ss;
         return day + "/" + month + "/" + year + " " + hh + ":" + mm + ":" + ss;
     },
-    startLoading: function () {
+    startLoading: function() {
         if ($('.dv-loading').length > 0)
             $('.dv-loading').removeClass('hide');
     },
-    stopLoading: function () {
+    stopLoading: function() {
         if ($('.dv-loading').length > 0)
             $('.dv-loading')
                 .addClass('hide');
     },
-    getStatus: function (status) {
+    getStatus: function(status) {
         if (status === 1)
             return '<span class="badge bg-green">Kích hoạt</span>';
         else
             return '<span class="badge bg-red">Khoá</span>';
 
     },
-    formatNumber: function (number, precision) {
+    formatNumber: function(number, precision) {
         if (!isFinite(number)) {
             return number.toString();
         }
@@ -154,7 +164,7 @@
         a[0] = a[0].replace(/\d(?=(\d{3})+$)/g, '$&,');
         return a.join('.');
     },
-    toCamel: function (o) {
+    toCamel: function(o) {
         var newO, origKey, newKey, value;
         if (o instanceof Array) {
             newO = [];
@@ -174,9 +184,9 @@
         }
         return newO;
     }
-}
-$(document).ajaxSend(function (e, xhr, options) {
-    if (options.type.toUpperCase() == "POST" || options.type.toUpperCase() == "PUT") {
+};
+$(document).ajaxSend(function(e, xhr, options) {
+    if (options.type.toUpperCase() === "POST" || options.type.toUpperCase() === "PUT") {
         var token = $('form').find("input[name='__RequestVerificationToken']").val();
         xhr.setRequestHeader("RequestVerificationToken", token);
     }
