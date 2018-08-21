@@ -17,6 +17,7 @@
                     var urlRedirect = util.getParamUrl('ReturnUrl');
                     // debugger;
                     window.location.href = util.getParamUrl('ReturnUrl') || '/Admin/Home/Index';
+                    console.log(res)
 
                 } else {
                     util.notify('Login failed', 'error');

@@ -4,6 +4,7 @@ using PesonManagement.Data.Entity;
 
 namespace PesonManagement.Areas.Admin.Controllers
 {
+    using Microsoft.AspNetCore.Http;
     using System.Threading.Tasks;
 
     public class AccountController : BaseController

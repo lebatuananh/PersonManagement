@@ -14,7 +14,8 @@ namespace PesonManagement
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
-
+    using NetEscapades.AspNetCore.SecurityHeaders;
+    using NetEscapades.AspNetCore.SecurityHeaders.Infrastructure;
     using Newtonsoft.Json.Serialization;
 
     using PesonManagement.Application.Implementation;
@@ -25,6 +26,7 @@ namespace PesonManagement
     using PesonManagement.Data.Implementation;
     using PesonManagement.Data.Interface;
     using PesonManagement.Helpers;
+    using PesonManagement.Middleware;
 
     public class Startup
     {
@@ -95,7 +97,6 @@ namespace PesonManagement
             services.AddTransient<IFunctionService, FunctionService>();
             services.AddTransient<IRoleService, RoleService>();
 
-
             services.AddTransient<IAuthorizationHandler, BaseResourceAuthorizationHandler>();
 
             services.ConfigureApplicationCookie(options =>
@@ -107,6 +108,7 @@ namespace PesonManagement
                     options.LoginPath = "/admin/login";
                 });
 
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(
                 options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
         }
@@ -124,6 +126,14 @@ namespace PesonManagement
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            // Add PROTECT XSS ATTACK & CUSTOM HEADER
+            //var policyCollection = new HeaderPolicyCollection()
+            //       .AddDefaultSecurityHeaders()
+            //       .AddCustomHeader("X-My-Test-Header", "XX-Secret+xxx+xx+hambamjdo");
+
+            // Add XS_protect
+            //app.UseSecurityHeaders(policyCollection);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

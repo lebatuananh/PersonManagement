@@ -12,7 +12,8 @@ namespace PesonManagement.Helpers
         private UserManager<AppUser> _userManger;
 
         public CustomClaimsPrincipalFactory(UserManager<AppUser> userManager,
-                                            RoleManager<AppRole> roleManager, IOptions<IdentityOptions> options)
+                                            RoleManager<AppRole> roleManager, 
+                                            IOptions<IdentityOptions> options)
             : base(userManager, roleManager, options)
         {
             _userManger = userManager;
