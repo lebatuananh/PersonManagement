@@ -12,7 +12,6 @@ namespace PesonManagement.Data.Entity
     {
         public string FullName { get; set; }
         public DateTime? DateOfBirth { get; set; }
-        public decimal Blance { get; set; }
         public string Avatar { get; set; }
         public Status Status { get; set; }
         public DateTime CreatedDate { get; set; }

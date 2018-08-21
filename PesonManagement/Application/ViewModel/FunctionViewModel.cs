@@ -14,6 +14,8 @@ namespace PesonManagement.Application.ViewModel
         public string Name { get; set; }
 
         public string Url { get; set; }
+
+        public string IconCss { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public bool IsDelete { get; set; }

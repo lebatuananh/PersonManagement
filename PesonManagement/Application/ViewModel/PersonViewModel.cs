@@ -21,6 +21,8 @@ namespace PesonManagement.Application.ViewModel
         public string Job { get; set; }
 
         public Status Status { get; set; }
+
+        public string Avatar { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public bool IsDelete { get; set; }

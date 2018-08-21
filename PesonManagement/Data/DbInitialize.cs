@@ -43,7 +43,6 @@ namespace PesonManagement.Data
                         UserName = "admin",
                         FullName = "Admin",
                         Email = "admin@gmail.com",
-                        Blance = 0,
                         Status = Status.Active,
                         CreatedDate = DateTime.Now
                     },
@@ -56,7 +55,6 @@ namespace PesonManagement.Data
                         UserName = "staff",
                         FullName = "Staff",
                         Email = "staff@gmail.com",
-                        Blance = 0,
                         Status = Status.Active,
                         CreatedDate = DateTime.Now
                     },
@@ -69,7 +67,6 @@ namespace PesonManagement.Data
                         UserName = "customer",
                         FullName = "Customer",
                         Email = "customer@gmail.com",
-                        Blance = 0,
                         Status = Status.Active,
                         CreatedDate = DateTime.Now
                     },
@@ -90,7 +87,7 @@ namespace PesonManagement.Data
                     person.Status = Status.Active;
                     person.Id = new Guid();
                     person.DateOfBirth = DateTime.UtcNow;
-                    person.CreatedDate=DateTime.Now;
+                    person.CreatedDate = DateTime.Now;
                     listPersons.Add(person);
                 }
 
@@ -136,6 +133,7 @@ namespace PesonManagement.Data
                                                                ParentId = null,
                                                                SortOrder = 1,
                                                                Url = "/",
+                                                               IconCss="fa-desktop",
                                                                CreatedDate = DateTime.Now
                                                            },
                                                        new Function()
@@ -145,6 +143,7 @@ namespace PesonManagement.Data
                                                                ParentId = guidSystem,
                                                                SortOrder = 1,
                                                                Url = "/admin/role/index",
+                                                               IconCss="fa-home",
                                                                CreatedDate = DateTime.Now
                                                            },
                                                        new Function()
@@ -154,6 +153,7 @@ namespace PesonManagement.Data
                                                                ParentId = guidSystem,
                                                                SortOrder = 2,
                                                                Url = "/admin/function/index",
+                                                               IconCss="fa-home",
                                                                CreatedDate = DateTime.Now
                                                            },
                                                        new Function()
@@ -163,6 +163,7 @@ namespace PesonManagement.Data
                                                                ParentId = guidSystem,
                                                                SortOrder = 3,
                                                                Url = "/admin/user/index",
+                                                               IconCss="fa-home",
                                                                CreatedDate = DateTime.Now
                                                            },
                                                        new Function()
@@ -172,6 +173,7 @@ namespace PesonManagement.Data
                                                                ParentId = guidSystem,
                                                                SortOrder = 4,
                                                                Url = "/admin/activity/index",
+                                                               IconCss="fa-home",
                                                                CreatedDate = DateTime.Now
                                                            },
                                                        new Function()
@@ -181,6 +183,7 @@ namespace PesonManagement.Data
                                                                ParentId = guidSystem,
                                                                SortOrder = 5,
                                                                Url = "/admin/error/index",
+                                                               IconCss="fa-home",
                                                                CreatedDate = DateTime.Now
 
                                                            },
@@ -191,6 +194,7 @@ namespace PesonManagement.Data
                                                                ParentId = guidSystem,
                                                                SortOrder = 6,
                                                                Url = "/admin/setting/index",
+                                                               IconCss="fa-home",
                                                                CreatedDate = DateTime.Now
 
                                                            },
@@ -201,6 +205,7 @@ namespace PesonManagement.Data
                                                                ParentId = null,
                                                                SortOrder = 2,
                                                                Url = "/",
+                                                               IconCss="fa-table",
                                                                CreatedDate = DateTime.Now
 
                                                            }

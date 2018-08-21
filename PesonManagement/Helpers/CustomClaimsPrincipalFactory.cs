@@ -27,6 +27,7 @@ namespace PesonManagement.Helpers
                    new Claim(ClaimTypes.NameIdentifier,user.UserName),
                    new Claim("Email",user.Email),
                    new Claim("FullName",user.FullName),
+                   new Claim("Avatar",user.Avatar??string.Empty),
                    new Claim("Roles",string.Join(";",roles)),
                    new Claim("UserId",user.Id.ToString())
                });
