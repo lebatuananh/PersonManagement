@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Linq;
 
 namespace PesonManagement.Extensions
@@ -13,6 +13,7 @@ namespace PesonManagement.Extensions
             return Guid.Parse(claim.Value);
         }
 
+        //lấy claim cụ thể
         public static string GetSpecificClaim(this ClaimsPrincipal claimsPrincipal, string claimType)
         {
             var claim = claimsPrincipal.Claims.FirstOrDefault(x => x.Type == claimType);

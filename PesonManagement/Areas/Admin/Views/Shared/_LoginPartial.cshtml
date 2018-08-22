@@ -5,7 +5,7 @@
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-    <img src="/admin-side/images/img.jpg" alt="">John Doe
+    <img src="@User.GetSpecificClaim("Avatar")" alt="">@User.GetSpecificClaim("FullName")
     <span class=" fa fa-angle-down"></span>
 </a>
 <ul class="dropdown-menu dropdown-usermenu pull-right">

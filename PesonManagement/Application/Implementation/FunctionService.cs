@@ -14,8 +14,9 @@ namespace PesonManagement.Application.Implementation
     using PesonManagement.Application.ViewModel;
     using PesonManagement.Data.Entity;
     using PesonManagement.Data.Interface;
+    using PesonManagement.Utils;
 
-    public class FunctionService:IFunctionService
+    public class FunctionService : IFunctionService
     {
         private readonly IRepository<Function, Guid> _functionRepository;
 
@@ -36,16 +37,16 @@ namespace PesonManagement.Application.Implementation
             this._functionRepository.Add(model);
         }
 
-        public List<FunctionViewModel> GetAll(string filter)
+        public async Task<List<FunctionViewModel>> GetAll(string filter)
         {
-           var query=this._functionRepository.FindAll();
+            var query = this._functionRepository.FindAll(x => x.Status == Status.Active);
             if (!string.IsNullOrEmpty(filter))
             {
                 query = query.Where(x => x.Name.Contains(filter));
             }
 
-            return query.OrderBy(x => x.ParentId).ProjectTo<FunctionViewModel>().ToList();
-
+            var lstFuncs = await query.OrderBy(x => x.ParentId).ToListAsync();
+            return lstFuncs.Select(t => Mapper.Map<FunctionViewModel>(t)).ToList();
         }
 
         public IEnumerable<FunctionViewModel> GetAllWithParentId(Guid parentId)
@@ -79,7 +80,7 @@ namespace PesonManagement.Application.Implementation
 
         public bool CheckExistedId(Guid id)
         {
-           return this._functionRepository.FindById(id) != null;
+            return this._functionRepository.FindById(id) != null;
         }
 
         public void UpdateParentId(Guid sourceId, Guid targetId, Dictionary<Guid, int> items)

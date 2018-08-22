@@ -17,7 +17,7 @@
                     var urlRedirect = util.getParamUrl('ReturnUrl');
                     // debugger;
                     window.location.href = util.getParamUrl('ReturnUrl') || '/Admin/Home/Index';
-                    console.log(res)
+                    console.log(res);
 
                 } else {
                     util.notify('Login failed', 'error');
@@ -26,10 +26,24 @@
         });
     };
     var registerEvents = function () {
+        $('#frmLogin').validate({
+            errorClass: 'red',
+            ignore: [],
+            lang: 'en',
+            rules: {
+                userName: {
+                    required: true
+                },
+                password: {
+                    required:true
+                }
+            }
+
+        });
         $('#btnLogin').off('click').on('click', function () {
             var user = $('#txtUserName').val();
             var password = $('#txtPassword').val();
             login(user, password);
         });
-    }
+    };
 };

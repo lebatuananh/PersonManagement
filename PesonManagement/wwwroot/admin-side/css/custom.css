@@ -4183,8 +4183,12 @@ ul.notifications {
 }
 
 
-
-
+.lblerror {
+    margin-bottom: 20px;
+    float: left;
+    font-size: 13px;
+    margin-top: -14px;
+}
 /* CSS3 Checkbox */
 /*
 .checkbox-input { display:block;position:relative; }
@@ -4233,8 +4237,9 @@ ul.notifications {
 table thead .checkbox { margin-top:-7px;margin-top:-21px; }
 table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 */
-			
-.daterangepicker.xdisplay { width:228px; }
+.daterangepicker.xdisplay {
+    width: 228px;
+}
 
 .dataTables_wrapper > .row{
   overflow:auto !important; /*prevent datatables overflowing its container*/

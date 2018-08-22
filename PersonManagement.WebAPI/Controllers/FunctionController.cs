@@ -27,10 +27,17 @@ namespace PersonManagement.WebAPI.Controllers
         /// The <see cref="IActionResult"/>.
         /// </returns>
         [HttpGet("{filter}", Name = "GetAllFilter")]
-        public IActionResult GetAllFilter(string filter)
+        public async Task<IActionResult> GetAllFilter(string filter)
         {
-            var model = this._funtionService.GetAll(filter);
-            return new OkObjectResult(model);
+            try
+            {
+                var model = await _funtionService.GetAll(filter);
+                return Ok(new OkObjectResult(model));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new OkObjectResult(new { key = "Error: ", value = ex.ToString() }));
+            }
         }
 
         /// <summary>
@@ -42,15 +49,17 @@ namespace PersonManagement.WebAPI.Controllers
         [HttpGet(Name = "GetAll")]
         public async Task<IActionResult> GetAll()
         {
-            var model = this._funtionService.GetAll(string.Empty);
-            var rootFunction = model.Where(x => x.ParentId == null);
+            var model = await _funtionService.GetAll(string.Empty);
+            var rootFunctions = model.Where(c => c.ParentId == null);
             var items = new List<FunctionViewModel>();
-            foreach (var function in rootFunction)
+            foreach (var function in rootFunctions)
             {
+                //add the parent category to the item list
                 items.Add(function);
+                //now get all its children (separate Category in case you need recursion)
                 GetByParentId(model.ToList(), function, items);
             }
-            return new OkObjectResult(items);
+            return new ObjectResult(items);
         }
 
         /// <summary>

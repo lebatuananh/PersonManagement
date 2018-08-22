@@ -23,7 +23,7 @@ namespace PesonManagement.Helpers
         {
             var principal = await base.CreateAsync(user);
             var roles = await _userManger.GetRolesAsync(user);
-            ((ClaimsIdentity)principal.Identity).AddClaims(new[]
+            ((ClaimsIdentity)principal.Identity).AddClaims(new[] //Lấy tập quyền ép sang ClaimsIdentity
                {
                    new Claim(ClaimTypes.NameIdentifier,user.UserName),
                    new Claim("Email",user.Email),

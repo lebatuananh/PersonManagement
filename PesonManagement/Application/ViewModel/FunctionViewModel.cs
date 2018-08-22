@@ -2,6 +2,7 @@
 
 namespace PesonManagement.Application.ViewModel
 {
+    using PesonManagement.Utils;
     using System.ComponentModel.DataAnnotations;
 
     public class FunctionViewModel
@@ -16,8 +17,13 @@ namespace PesonManagement.Application.ViewModel
         public string Url { get; set; }
 
         public string IconCss { get; set; }
+
         public DateTime CreatedDate { get; set; }
+
         public DateTime ModifiedDate { get; set; }
+
         public bool IsDelete { get; set; }
+
+        public Status Status { get; set; }
     }
 }

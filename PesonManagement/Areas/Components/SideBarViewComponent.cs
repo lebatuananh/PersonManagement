@@ -10,6 +10,7 @@ namespace PesonManagement.Areas.Components
     using PesonManagement.Extensions;
     using PesonManagement.Utils;
     using System.Security.Claims;
+    using System.Threading.Tasks;
 
     public class SideBarViewComponent : ViewComponent
     {
@@ -20,20 +21,18 @@ namespace PesonManagement.Areas.Components
             this._functionService = functionService;
         }
 
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
             var roles = ((ClaimsPrincipal)User).GetSpecificClaim("Roles");
             List<FunctionViewModel> functions;
             if (roles.Split(";").Contains(CommonConstants.AppRole.Admin))
             {
-                functions = this._functionService.GetAll(string.Empty);
+                functions = await this._functionService.GetAll(string.Empty);
             }
             else
             {
-                functions = this._functionService.GetAll(string.Empty);
+                functions = await this._functionService.GetAll(string.Empty);
             }
-
-            // ReSharper disable once Mvc.ViewComponentViewNotResolved
             return this.View(functions);
         }
     }

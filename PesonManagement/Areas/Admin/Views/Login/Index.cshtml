@@ -23,7 +23,7 @@
 
     <link href="~/admin-side/lib/notifyjs/dist/styles/metro/notify-metro.css" rel="stylesheet" />
     <!-- Custom Theme Style -->
-    <link href="~/admin-side/css/custom.min.css" rel="stylesheet">
+    <link href="~/admin-side/css/custom.css" rel="stylesheet">
 </head>
 
 <body class="login">
@@ -34,14 +34,14 @@
         <div class="login_wrapper">
             <div class="animate form login_form">
                 <section class="login_content">
-                    <form>
+                    <form id="frmLogin">
                         @Html.AntiForgeryToken()
                         <h1>Login System Admin</h1>
                         <div>
-                            <input id="txtUserName" type="text" class="form-control" placeholder="Username" required=""/>
+                            <input id="txtUserName" data-required="true" type="text" class="form-control" placeholder="Username" required="" />
                         </div>
                         <div>
-                            <input id="txtPassword" type="password" class="form-control" placeholder="Password" required=""/>
+                            <input id="txtPassword" data-required="true" type="password" class="form-control" placeholder="Password" required="" />
                         </div>
                         <div>
                             <a class="btn btn-default submit" id="btnLogin">Log in</a>
@@ -52,7 +52,7 @@
 
                         <div class="separator">
                             <div class="clearfix"></div>
-                            <br/>
+                            <br />
                             <div>
                                 <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
                                 <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
@@ -70,6 +70,8 @@
     <script src="~/admin-side/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/admin-side/lib/jquery-validation/dist/additional-methods.js"></script>
     <script src="~/admin-side/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+    
 
     <script src="~/app/shared/util.js"></script>
     <script src="~/app/controller/login/index.js"></script>

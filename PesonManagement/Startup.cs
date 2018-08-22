@@ -96,13 +96,13 @@ namespace PesonManagement
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IFunctionService, FunctionService>();
             services.AddTransient<IRoleService, RoleService>();
-
+            services.AddSession();
             services.AddTransient<IAuthorizationHandler, BaseResourceAuthorizationHandler>();
 
             services.ConfigureApplicationCookie(options =>
                 {
                     options.AccessDeniedPath = "/Account/AccessDenied";
-                    options.Cookie.Name = "YourAppCookieName";
+                    options.Cookie.Name = "PersonManagement.PM";
                     options.Cookie.HttpOnly = true;
                     options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
                     options.LoginPath = "/admin/login";
@@ -127,18 +127,19 @@ namespace PesonManagement
                 app.UseHsts();
             }
 
-            // Add PROTECT XSS ATTACK & CUSTOM HEADER
+            //Add PROTECT XSS ATTACK &CUSTOM HEADER
             //var policyCollection = new HeaderPolicyCollection()
             //       .AddDefaultSecurityHeaders()
             //       .AddCustomHeader("X-My-Test-Header", "XX-Secret+xxx+xx+hambamjdo");
 
-            // Add XS_protect
+            //Add XS_protect
             //app.UseSecurityHeaders(policyCollection);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

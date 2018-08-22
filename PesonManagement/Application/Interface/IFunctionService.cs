@@ -11,7 +11,7 @@ namespace PesonManagement.Application.Interface
     {
         void Add(FunctionViewModel function);
 
-        List<FunctionViewModel> GetAll(string filter);
+        Task<List<FunctionViewModel>> GetAll(string filter);
 
         IEnumerable<FunctionViewModel> GetAllWithParentId(Guid parentId);
 
