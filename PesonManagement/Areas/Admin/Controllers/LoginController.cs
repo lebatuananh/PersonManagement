@@ -19,7 +19,7 @@ namespace PesonManagement.Areas.Admin.Controllers
 
         private readonly SignInManager<AppUser> _signInManager;
 
-        private ILogger _logger;
+        private readonly ILogger _logger;
 
         public LoginController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
                                ILogger<LoginController> logger)

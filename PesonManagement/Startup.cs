@@ -96,6 +96,8 @@ namespace PesonManagement
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IFunctionService, FunctionService>();
             services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IPersonService, PersonService>();
+            
             services.AddSession();
             services.AddTransient<IAuthorizationHandler, BaseResourceAuthorizationHandler>();
 

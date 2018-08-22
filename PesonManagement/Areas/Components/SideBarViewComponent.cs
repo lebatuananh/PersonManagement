@@ -33,6 +33,7 @@ namespace PesonManagement.Areas.Components
             {
                 functions = await this._functionService.GetAll(string.Empty);
             }
+            // ReSharper disable once Mvc.ViewComponentViewNotResolved
             return this.View(functions);
         }
     }
