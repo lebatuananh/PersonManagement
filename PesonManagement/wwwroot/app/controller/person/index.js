@@ -1,11 +1,8 @@
 var PersonController = function () {
     this.initialize = function () {
         loadData();
+
     };
-
-    function registerEvents() {
-
-    }
 
     function loadData() {
         $.ajax({
@@ -13,15 +10,16 @@ var PersonController = function () {
             url: '/admin/person/GetAll',
             dataType: 'json',
             success: function (response) {
+                console.log(response);
                 $('#datatable-responsives').DataTable({
                     data: response,
-                    'scrollY':400,
+                    'scrollY': 400,
                     columns: [
                         {
-                            'render': function () {
-                                return ' <a class="btn  btn-sm btn-edit" data-id="{{Id}}"><i class="fa fa-pencil"></i></a>\n'
-                                    +
-                                    '<a class="btn  btn-sm btn-delete" data-id="{{Id}}"><i class="fa fa-trash"></i></a>'
+                            'data': 'Id',
+                            'render': function (Id) {
+                                return '<a class="btn btn-sm btn-edit" onclick="eventEditPerson(\'' + Id + '\')"><i class="fa fa-pencil"></i></a>' +
+                                '<a id="btnDelete" class="btn btn-sm btn-delete" onclick="eventDeletePerson(\'' + Id + '\')"><i class="fa fa-trash"></i></a>'
                             }
                         },
                         {'data': 'Name'},
@@ -105,8 +103,8 @@ var PersonController = function () {
                         },
                         {
                             'data': 'Avatar',
-                            'render':function (avatar) {
-                                if (avatar==null){
+                            'render': function (avatar) {
+                                if (avatar == null) {
                                     return '<img src="/admin-side/images/user.png" width=25';
                                 } else {
                                     return '<img src="' + avatar + '" width=25 />'
@@ -134,3 +132,8 @@ var PersonController = function () {
         });
     }
 };
+
+function eventEditPerson(Id) {
+     $('#modal-add-edit').modal('show');
+    console.log('edit ' + Id);
+}
